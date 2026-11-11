@@ -16,6 +16,6 @@ cat > "$A/Contents/Info.plist" <<'EOF'
 </dict></plist>
 EOF
 swiftc -swift-version 5 -O "$D/main.swift" -o "$A/Contents/MacOS/HeadMouseSpike" -framework CoreMotion -framework AppKit -framework Carbon
-codesign --force --sign "NotchPill Self-Signed" "$A"
-codesign -dv "$A" 2>&1 | grep -E '^(Identifier|Signature|Authority)'
+codesign --force --options runtime --sign "NotchPill Self-Signed" "$A"
+codesign -dv "$A" 2>&1 | grep -E '^(Identifier|Signature|Authority|CodeDirectory)'
 echo built
